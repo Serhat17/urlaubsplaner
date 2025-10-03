@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "urlaubsplanner-api-2024",
+		"name": "Employee Absence Management API",
+		"description": "Complete API collection for testing the Employee Absence Management System with multi-region support",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login - Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"max.mustermann\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Login - Manager (Dortmund)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"anna.wagner\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Login - Super Manager",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "logout"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Vacation Requests",
+			"item": [
+				{
+					"name": "Create Vacation Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"employeeName\": \"max.mustermann\",\n  \"startDate\": \"2025-07-01\",\n  \"endDate\": \"2025-07-10\",\n  \"absenceType\": \"VACATION\",\n  \"notes\": \"Summer vacation with family\",\n  \"representativeName\": \"sarah.mueller\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/vacations",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations"]
+						}
+					}
+				},
+				{
+					"name": "Create Sick Leave Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"employeeName\": \"thomas.schmidt\",\n  \"startDate\": \"2025-06-15\",\n  \"endDate\": \"2025-06-16\",\n  \"absenceType\": \"SICK_LEAVE\",\n  \"notes\": \"Flu symptoms\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/vacations",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations"]
+						}
+					}
+				},
+				{
+					"name": "Get All Requests (Manager)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/vacations",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations"]
+						}
+					}
+				},
+				{
+					"name": "Get Requests by Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/vacations/employee/max.mustermann",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations", "employee", "max.mustermann"]
+						}
+					}
+				},
+				{
+					"name": "Approve Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/vacations/1/approve?reason=Approved for summer break",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations", "1", "approve"],
+							"query": [
+								{
+									"key": "reason",
+									"value": "Approved for summer break"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Reject Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/vacations/2/reject?reason=Team capacity too low",
+							"host": ["{{base_url}}"],
+							"path": ["api", "vacations", "2", "reject"],
+							"query": [
+								{
+									"key": "reason",
+									"value": "Team capacity too low"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "Get Team Members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/manager/team",
+							"host": ["{{base_url}}"],
+							"path": ["api", "manager", "team"]
+						}
+					}
+				},
+				{
+					"name": "Get Team Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/manager/team/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "manager", "team", "statistics"]
+						}
+					}
+				},
+				{
+					"name": "Get Team Calendar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/manager/team/calendar?startDate=2025-01-01&endDate=2025-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "manager", "team", "calendar"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Team Overload Warnings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/manager/team/overload",
+							"host": ["{{base_url}}"],
+							"path": ["api", "manager", "team", "overload"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/admin/users",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "users"]
+						}
+					}
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"new.employee\",\n  \"password\": \"password\",\n  \"fullName\": \"New Employee\",\n  \"role\": \"EMPLOYEE\",\n  \"totalVacationDays\": 30,\n  \"usedVacationDays\": 0,\n  \"active\": true,\n  \"regionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/users",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "users"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"max.mustermann\",\n  \"fullName\": \"Max Mustermann\",\n  \"role\": \"EMPLOYEE\",\n  \"totalVacationDays\": 32,\n  \"usedVacationDays\": 0,\n  \"active\": true,\n  \"regionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/admin/statistics",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "statistics"]
+						}
+					}
+				},
+				{
+					"name": "Get Vacation Usage Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/admin/reports/vacation-usage",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "reports", "vacation-usage"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Regions",
+			"item": [
+				{
+					"name": "Get All Regions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/regions",
+							"host": ["{{base_url}}"],
+							"path": ["api", "regions"]
+						}
+					}
+				},
+				{
+					"name": "Get Region by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/regions/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "regions", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Audit Logs",
+			"item": [
+				{
+					"name": "Get All Audit Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/audit/logs",
+							"host": ["{{base_url}}"],
+							"path": ["api", "audit", "logs"]
+						}
+					}
+				},
+				{
+					"name": "Export Audit Logs CSV",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/audit/logs/export/csv",
+							"host": ["{{base_url}}"],
+							"path": ["api", "audit", "logs", "export", "csv"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password",
+			"type": "string"
+		}
+	]
+}
