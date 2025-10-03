@@ -614,7 +614,7 @@ npm run build
 
 **Serhat Bilge**
 - GitHub: [@Serhat17](https://github.com/Serhat17)
-- LinkedIn: [Serhat Bilge](https://linkedin.com/in/serhat-bilge)
+- LinkedIn: [Serhat Bilge](https://linkedin.com/in/serhat-bilge-653415236)
 
 ---
 
@@ -626,7 +626,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **adesso SE** - For the opportunity to showcase this project
 - **Spring Boot** - Excellent Java framework
 - **React** - Amazing frontend library
 - **TailwindCSS** - Beautiful utility-first CSS framework
@@ -639,4 +638,4 @@ If you have any questions or issues, please open an issue on GitHub or contact m
 
 ---
 
-**Made with ❤️ for adesso Werkstudent Application**
+**Made with ❤️**
