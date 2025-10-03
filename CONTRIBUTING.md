@@ -7,8 +7,8 @@ Thank you for your interest in contributing to the Mitarbeiter-Urlaubsverwaltung
 1. **Fork the repository**
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/yourusername/urlaubsplanner.git
-   cd urlaubsplanner
+   git clone https://github.com/yourusername/urlaubsplaner.git
+   cd urlaubsplaner
    ```
 
 3. **Create a feature branch**
